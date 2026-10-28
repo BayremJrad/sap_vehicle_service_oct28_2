@@ -1,5 +1,8 @@
 workspace:
   id: f24ccd2c-3462-4e0e-a890-43f6ae238380
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
 cloudResources:
   specs:
     ../postman/specs/Vehicle Service - API Contract/index.yaml: 473de2a9-48d2-46f7-ac26-d3ee8d22183f
@@ -15,6 +18,7 @@ cloudResources:
 resourceNameMappings:
   specs:
     - ../postman/specs/Vehicle Service - API Contract/index.yaml: Vehicle Service - API Contract
+
 localResources:
   specs:
     - ../postman/specs/Vehicle Service - API Contract/index.yaml
