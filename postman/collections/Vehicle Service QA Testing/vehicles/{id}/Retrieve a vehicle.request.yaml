@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/vehicles/:id"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "1"
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+settings: {}
+examples: ./.resources/Retrieve a vehicle.resources/examples
+order: 1000

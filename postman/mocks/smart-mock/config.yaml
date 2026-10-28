@@ -1,0 +1,15 @@
+id: 01a18371-5bb5-7036-a749-9f68cba5fc1b
+version: 1
+name: Smart Mock
+slug: new-mock-7306a
+enableSession: true
+protocol: http
+port: 4501
+autoRestartOnChange: true
+logging:
+  level: verbose
+  showBody: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true

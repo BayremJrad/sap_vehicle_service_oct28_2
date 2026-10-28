@@ -1,0 +1,65 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/vehicles"
+  method: GET
+  headers:
+    Accept: application/json
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "id": 7181,
+          "nickName": "string",
+          "vin": "string",
+          "make": "string",
+          "model": "string",
+          "year": "string",
+          "miles": 8932
+        },
+        {
+          "id": 3348,
+          "nickName": "string",
+          "vin": "string",
+          "make": "string",
+          "model": "string",
+          "year": "string",
+          "miles": 5791
+        }
+      ]
+    $type: |-
+      {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "nickName": {
+              "type": "string"
+            },
+            "vin": {
+              "type": "string"
+            },
+            "make": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "year": {
+              "type": "string"
+            },
+            "miles": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+order: 1000

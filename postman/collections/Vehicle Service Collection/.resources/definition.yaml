@@ -1,0 +1,120 @@
+$kind: collection
+description: |-
+  # Vehicle Service Collection
+
+  This collection provides a complete set of RESTful API endpoints for managing vehicles in the Vehicle Service platform. It allows you to create, retrieve, update, and delete vehicle records.
+
+  ## Base URL
+
+  All requests use the `{{baseUrl}}` variable to define the server URL. This variable is resolved from the active environment. Make sure the **Mock Environment** is selected and the `baseUrl` variable is set before sending any requests.
+
+  ## Authorization
+
+  This collection does not require authentication. All requests are open and can be sent without any authorization headers.
+
+  ## Variables
+
+  | Variable | Scope | Description |
+  | --- | --- | --- |
+  | `baseUrl` | Environment / Collection | The root URL of the Vehicle Service API. Set this in your active environment before sending requests. |
+
+  ## Endpoints
+
+  ### Create a vehicle
+
+  **POST** `{{baseUrl}}/vehicles`
+
+  Creates a new vehicle record. Requires a JSON body with vehicle details including VIN, make, model, year, and mileage.
+
+  **Request Body Fields:**
+
+  - `nickName` (string) – A friendly name for the vehicle
+      
+  - `vin` (string) – Vehicle Identification Number (must be unique)
+      
+  - `make` (string) – Vehicle manufacturer (e.g. Ford, Toyota)
+      
+  - `model` (string) – Vehicle model name
+      
+  - `year` (string) – Model year
+      
+  - `miles` (number) – Current odometer reading
+      
+
+  **Responses:** `201 Created`, `400 Bad Request`, `409 Conflict`, `500 Internal Server Error`
+
+  ---
+
+  ### Retrieve a vehicle
+
+  **GET** `{{baseUrl}}/vehicles/:id`
+
+  Returns details for a single vehicle by its unique ID. Replace `:id` in the path with the vehicle's ID.
+
+  **Responses:** `200 OK`, `404 Not Found`, `500 Internal Server Error`
+
+  ---
+
+  ### Update a vehicle
+
+  **PATCH** `{{baseUrl}}/vehicles/:id`
+
+  Partially updates an existing vehicle record. Replace `:id` with the vehicle's ID and provide only the fields you want to change in the request body.
+
+  **Responses:** `200 OK`, `400 Bad Request`, `500 Internal Server Error`
+
+  ---
+
+  ### Delete a vehicle
+
+  **DELETE** `{{baseUrl}}/vehicles/:id`
+
+  Permanently deletes a vehicle record by its ID. Replace `:id` with the vehicle's ID.
+
+  **Responses:** `204 No Content`, `500 Internal Server Error`
+
+  ---
+
+  ### Get all vehicles
+
+  **GET** `{{baseUrl}}/vehicles`
+
+  Returns a list of all vehicle records in the system.
+
+  **Responses:** `200 OK`, `500 Internal Server Error`
+
+  ---
+
+  ## Getting Started
+
+  1. Select the **Mock Environment** from the environment selector in the top-right corner of Postman.
+      
+  2. Set the `baseUrl` variable in the environment to the target server URL (e.g. your mock server URL).
+      
+  3. Open the **Create a vehicle** request, review the example JSON body, and send it to add your first vehicle.
+      
+  4. Copy the `id` from the response and use it in the **Retrieve a vehicle**, **Update a vehicle**, or **Delete a vehicle** requests.
+      
+
+  ## Headers
+
+  All requests that send a body include:
+
+  - `Content-Type: application/json`
+      
+  - `Accept: application/json`
+variables:
+  baseUrl: "{{baseUrl}}"
+scripts:
+  - type: http:afterResponse
+    code: |-
+      pm.test("Status code is 200 or 201", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);
+      });
+    language: text/javascript
+auth:
+  - id: 35741d3b-3b3b-4938-aacf-eb30b031995d
+    type: apikey
+    name: apikey auth
+    credentials:
+      key: X-API-Key
